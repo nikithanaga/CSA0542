@@ -1,0 +1,73 @@
+mysql> create database sse;
+ERROR 1007 (HY000): Can't create database 'sse'; database exists
+mysql> use sse;
+Database changed
+mysql> create table faculty1(facid int(10),facname varchar(10),facdept varchar(10),salary int(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(10)     | YES  |     | NULL    |       |
+| facname | varchar(10) | YES  |     | NULL    |       |
+| facdept | varchar(10) | YES  |     | NULL    |       |
+| salary  | int(10)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into faculty1 values(1,"nikitha","cse",12000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into faculty1 values(2,"neha","cse",13000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty1 values(3,"sunny","cse",16000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty1 values(4,"chetan","cse",20000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from faculty1;
++-------+---------+---------+--------+
+| facid | facname | facdept | salary |
++-------+---------+---------+--------+
+|     1 | nikitha | cse     |  12000 |
+|     2 | neha    | cse     |  13000 |
+|     3 | sunny   | cse     |  16000 |
+|     4 | chetan  | cse     |  20000 |
++-------+---------+---------+--------+
+4 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
