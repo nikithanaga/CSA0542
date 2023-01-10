@@ -1,0 +1,92 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| empdept       |
+| employee      |
+| faculty       |
+| faculty1      |
+| mentees       |
+| studdept1     |
+| student       |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
++-----------+-------+------------+------------+---------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select regno,name from mentees where name in(select name from mentees where department="cse");
+ERROR 1054 (42S22): Unknown column 'regno' in 'field list'
+mysql> select reg,name from mentees where name in(select name from mentees where department="cse");
++-----------+-------+
+| reg       | name  |
++-----------+-------+
+| 192220009 | neha  |
+| 190000224 | sunny |
++-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table mentees(id(int(10),name varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(int(10),name varchar(20))' at line 1
+mysql> create table mentees1(id(int(10),name varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(int(10),name varchar(10))' at line 1
+mysql> create table mentees2(Id int(10),name varchar(10));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into mentees(id,name)
+    -> select reg,name
+    -> from mentees where department="cse";
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> insert into mentees(reg,name)
+    -> select reg,name
+    -> from mentees where department="cse";
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
+| 192220009 | neha  | NULL       | NULL       | NULL    | NULL | NULL    |
+| 190000224 | sunny | NULL       | NULL       | NULL    | NULL | NULL    |
++-----------+-------+------------+------------+---------+------+---------+
+5 rows in set (0.00 sec)
+
+
+mysql> select reg,(select name from mentees where reg=19224053)as name,department,address,fathername,mark,subject from mentees where reg=192224053;
++-----------+------+------------+---------+------------+------+---------+
+| reg       | name | department | address | fathername | mark | subject |
++-----------+------+------------+---------+------------+------+---------+
+| 192224053 | NULL | bme        | guntur  | koteswarao |   90 | bio     |
++-----------+------+------------+---------+------------+------+---------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
