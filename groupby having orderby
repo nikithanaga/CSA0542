@@ -1,0 +1,79 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| empdept       |
+| employee      |
+| faculty       |
+| faculty1      |
+| mentees       |
+| studdept1     |
+| student       |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
++-----------+-------+------------+------------+---------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees order by name;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
++-----------+-------+------------+------------+---------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees group by mark;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
++-----------+-------+------------+------------+---------+------+---------+
+3 rows in set (0.01 sec)
+
+mysql> select*from mentees group by department;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
++-----------+-------+------------+------------+---------+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees having mark>95;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
++-----------+-------+------------+------------+---------+------+---------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
