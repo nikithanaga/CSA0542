@@ -1,0 +1,132 @@
+mysql> select*from mentees;
++-----------+-----------+------------+------------+--------------------+------+---------+
+| regno     | name      | fathername | department | address            | mark | subject |
++-----------+-----------+------------+------------+--------------------+------+---------+
+| 192211268 | Neha      | Ravi kumar | CSE        | lawyer pet, Ongole |   97 | DBMS    |
+| 192043265 | Tanuja    | vishnu     | CSE        | Ongole             |   94 | DBMS    |
+| 192211265 | Praneetha | Nageswar   | IT         | Chirala            |   95 | PDSD    |
++-----------+-----------+------------+------------+--------------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table mdept(Deptid int(10),Deptname varchar(20),Rollno int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into mdept values(1,"CSE",192211268);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mdept values(2,"CSE",192043265);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mdept values(3,"IT",192211265);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mdept;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      1 | CSE      | 192211268 |
+|      2 | CSE      | 192043265 |
+|      3 | IT       | 192211265 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update mdept set Deptname="BME" where rollno=192043265;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mdept;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      1 | CSE      | 192211268 |
+|      2 | BME      | 192043265 |
+|      3 | IT       | 192211265 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select deptid,deptname from mdept,mentees where mentees.regno=mdept.Rollno;
++--------+----------+
+| deptid | deptname |
++--------+----------+
+|      1 | CSE      |
+|      2 | BME      |
+|      3 | IT       |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select Deptid,Deptname,Rollno from mdept,mentees where mentees.regno=mdept.Rollno;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      1 | CSE      | 192211268 |
+|      2 | BME      | 192043265 |
+|      3 | IT       | 192211265 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Deptid,Deptname,Rollno from mdept m,mentees m1 where m1.regno=m.Rollno;
++--------+----------+-----------+
+| Deptid | Deptname | Rollno    |
++--------+----------+-----------+
+|      1 | CSE      | 192211268 |
+|      2 | BME      | 192043265 |
+|      3 | IT       | 192211265 |
++--------+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select Rollno,Deptname,name,address from mdept left outer join mentees on mdept.Rollno=mentees.regno;
++-----------+----------+-----------+--------------------+
+| Rollno    | Deptname | name      | address            |
++-----------+----------+-----------+--------------------+
+| 192211268 | CSE      | Neha      | lawyer pet, Ongole |
+| 192043265 | BME      | Tanuja    | Ongole             |
+| 192211265 | IT       | Praneetha | Chirala            |
++-----------+----------+-----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql>  select Rollno,Deptname,name,address from mdept right outer join mentees on mdept.Rollno=mentees.regno;
++-----------+----------+-----------+--------------------+
+| Rollno    | Deptname | name      | address            |
++-----------+----------+-----------+--------------------+
+| 192211268 | CSE      | Neha      | lawyer pet, Ongole |
+| 192043265 | BME      | Tanuja    | Ongole             |
+| 192211265 | IT       | Praneetha | Chirala            |
++-----------+----------+-----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into mdept values(4,"ENE",192011095);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> Query OK, 1 row affected (0.01 sec)
+    -> mysql> insert into mdept values(5,"COM",192211080);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.01 sec)
+mysql> insert into mdept values(5,"COM",1922' at line 1
+mysql> insert into mdept values(5,"COM",192211080);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select Rollno,Deptname,name,address from mdept right outer join mentees on mdept.Rollno=mentees.regno;
++-----------+----------+-----------+--------------------+
+| Rollno    | Deptname | name      | address            |
++-----------+----------+-----------+--------------------+
+| 192211268 | CSE      | Neha      | lawyer pet, Ongole |
+| 192043265 | BME      | Tanuja    | Ongole             |
+| 192211265 | IT       | Praneetha | Chirala            |
++-----------+----------+-----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into mdept values(4,"ENE",192043265);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mdept values(5,"COM",192211265);
+Query OK, 1 row affected (0.00 sec)
+mysql> select Rollno,Deptname,name,address from mdept right outer join mentees on mdept.Rollno=mentees.regno;
++-----------+----------+-----------+--------------------+
+| Rollno    | Deptname | name      | address            |
++-----------+----------+-----------+--------------------+
+| 192211268 | CSE      | Neha      | lawyer pet, Ongole |
+| 192043265 | BME      | Tanuja    | Ongole             |
+| 192043265 | ENE      | Tanuja    | Ongole             |
+| 192211265 | IT       | Praneetha | Chirala            |
+| 192211265 | COM      | Praneetha | Chirala            |
++-----------+----------+-----------+--------------------+
+5 rows in set (0.00 sec)
