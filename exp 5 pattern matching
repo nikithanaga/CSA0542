@@ -1,0 +1,116 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| empdept       |
+| employee      |
+| faculty       |
+| faculty1      |
+| mentees       |
+| studdept1     |
+| student       |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+
+| reg       | name  | fathername | department | address |
++-----------+-------+------------+------------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |
+| 192220009 | neha  | karthik    | cse        | chennai |
+| 190000224 | sunny | chetan     | cse        | chennai |
++-----------+-------+------------+------------+---------+
+3 rows in set (0.00 sec) 
+mysql> select*from mentees where department="cse";
++-----------+-------+------------+------------+---------+
+| reg       | name  | fathername | department | address |
++-----------+-------+------------+------------+---------+
+| 192220009 | neha  | karthik    | cse        | chennai |
+| 190000224 | sunny | chetan     | cse        | chennai |
++-----------+-------+------------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where name="neha";
++-----------+------+------------+------------+---------+
+| reg       | name | fathername | department | address |
++-----------+------+------------+------------+---------+
+| 192220009 | neha | karthik    | cse        | chennai |
++-----------+------+------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add mark int(3);
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+------+
+| reg       | name  | fathername | department | address | mark |
++-----------+-------+------------+------------+---------+------+
+| 192224053 | nikky | koteswarao | bme        | guntur  | NULL |
+| 192220009 | neha  | karthik    | cse        | chennai | NULL |
+| 190000224 | sunny | chetan     | cse        | chennai | NULL |
++-----------+-------+------------+------------+---------+------+
+3 rows in set (0.00 sec)
+
+
+mysql> update mentees set mark=99 where department="cse";
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update mentees set mark=90 where department="bme";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set mark=98 where name="neha";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set mark=97 where name="sunny";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+------+
+| reg       | name  | fathername | department | address | mark |
++-----------+-------+------------+------------+---------+------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 |
++-----------+-------+------------+------------+---------+------+
+3 rows in set (0.01 sec)
+
+mysql> select*from mentees where name like 'n%';
++-----------+-------+------------+------------+---------+------+
+| reg       | name  | fathername | department | address | mark |
++-----------+-------+------------+------------+---------+------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 |
++-----------+-------+------------+------------+---------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> select*from mentees where department like '%s%';
++-----------+-------+------------+------------+---------+------+
+| reg       | name  | fathername | department | address | mark |
++-----------+-------+------------+------------+---------+------+
+| 192220009 | neha  | karthik    | cse        | chennai |   98 |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 |
++-----------+-------+------------+------------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where address like '%i';
++-----------+-------+------------+------------+---------+------+
+| reg       | name  | fathername | department | address | mark |
++-----------+-------+------------+------------+---------+------+
+| 192220009 | neha  | karthik    | cse        | chennai |   98 |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 |
++-----------+-------+------------+------------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where address like 'c__n_i';
+Empty set (0.00 sec)
+
+mysql>
