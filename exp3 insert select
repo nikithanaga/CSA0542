@@ -1,0 +1,62 @@
+mysql> use sse;
+Database changed
+mysql> create table mentees(reg int(10),name varchar(10),fathername varchar(10),department varchar(10),address varchar(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc mentees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| reg        | int(10)     | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> insert into mentees values(192224053,"nikky","koteswarao","cse","guntur");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(192220009,"neha","karthik","cse","guntur");
+Query OK, 1 row affected (0.02 sec)
+
+
+mysql> insert into mentees values(190000224,"sunny","chetan","cse","guntur");
+Query OK, 1 row affected (0.00 sec)
+
+
+mysql> insert into mentees values(197774098,"satwi","kumar","cse","guntur");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+
+| reg       | name  | fathername | department | address |
++-----------+-------+------------+------------+---------+
+| 192224053 | nikky | koteswarao | cse        | guntur  |
+| 192220009 | neha  | karthik    | cse        | guntur  |
+| 190000224 | sunny | chetan     | cse        | guntur  |
+| 197774098 | satwi | kumar      | cse        | guntur  |
++-----------+-------+------------+------------+---------+
+4 rows in set (0.00 sec)
+
+
+mysql> select name from mentees;
++-------+
+| name  |
++-------+
+| nikky |
+| neha  |
+| sunny |
+| satwi |
++-------+
+4 rows in set (0.00 sec)
+
+
+mysql> select*from mentees where name="nikky";
++-----------+-------+------------+------------+---------+
+| reg       | name  | fathername | department | address |
++-----------+-------+------------+------------+---------+
+| 192224053 | nikky | koteswarao | cse        | guntur  |
++-----------+-------+------------+------------+---------+
+1 row in set (0.00 sec)
