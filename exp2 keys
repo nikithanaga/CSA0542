@@ -1,0 +1,64 @@
+mysql> use sse;
+Database changed
+mysql> create table student(studid int(10),studname varchar(10),gender varchar(10),studdept varchar(10),city varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| studid   | int(10)     | YES  |     | NULL    |       |
+| studname | varchar(10) | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
+| studdept | varchar(10) | YES  |     | NULL    |       |
+| city     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into student values(1,"nikitha","female",,"cse","ongole");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"cse","ongole")' at line 1
+mysql> insert into  student values (1,"nikitha","female","cse","ongole");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(2,"neha","female","cse","ongole");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(3,"sunny","male","cse","ananthapur");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(4,"chetan","male","cse","kadiri");
+Query OK, 1 row affected (0.01 sec)
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| faculty       |
+| faculty1      |
+| student       |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| empid   | int(10)     | YES  |     | NULL    |       |
+| empname | varchar(10) | YES  |     | NULL    |       |
+| empdept | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+mysql> create table studdept1( studid int(10),studname varchar(10),studdept varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc studdept1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| studid   | int(10)     | YES  |     | NULL    |       |
+| studname | varchar(10) | YES  |     | NULL    |       |
+| studdept | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
