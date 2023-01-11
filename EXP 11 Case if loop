@@ -1,0 +1,136 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| empdept       |
+| employee      |
+| faculty       |
+| faculty1      |
+| mark_view     |
+| mentees       |
+| mentees2      |
+| per           |
+| studdept1     |
+| student       |
++---------------+
+10 rows in set (0.01 sec)
+
+mysql> select*from mentees;
++-----------+-------+------------+------------+---------+------+---------+
+| reg       | name  | fathername | department | address | mark | subject |
++-----------+-------+------------+------------+---------+------+---------+
+| 192224053 | nikky | koteswarao | bme        | guntur  |   90 | bio     |
+| 192220009 | neha  | karthik    | cse        | chennai |   98 | dbms    |
+| 190000224 | sunny | chetan     | cse        | chennai |   97 | dbms    |
+| 192220009 | neha  | NULL       | NULL       | NULL    | NULL | NULL    |
+| 190000224 | sunny | NULL       | NULL       | NULL    | NULL | NULL    |
++-----------+-------+------------+------------+---------+------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT name,mark,CASE WHEN mark>95 THEN 'execellent' WHEN Mark>90 THEN 'goood' else 'average' END AS performance FROM mentees;
++-------+------+-------------+
+| name  | mark | performance |
++-------+------+-------------+
+| nikky |   90 | average     |
+| neha  |   98 | execellent  |
+| sunny |   97 | execellent  |
+| neha  | NULL | average     |
+| sunny | NULL | average     |
++-------+------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select name,mark,if(mark>95,"excellent mark","good mark")from mentees;
++-------+------+------------------------------------------+
+| name  | mark | if(mark>95,"excellent mark","good mark") |
++-------+------+------------------------------------------+
+| nikky |   90 | good mark                                |
+| neha  |   98 | excellent mark                           |
+| sunny |   97 | excellent mark                           |
+| neha  | NULL | good mark                                |
+| sunny | NULL | good mark                                |
++-------+------+------------------------------------------+
+5 rows in set (0.02 sec)
+
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION REPEAT_DEMO(INC INT)
+    -> RETURNS CHAR(40)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE INCOME INT;
+    -> SET INCOME=0;
+    -> REPEAT
+    -> SET INCOME=INCOME+INC;
+    -> UNTIL INCOME>4000
+    -> END REPEAT;
+    -> RETURN "INCOME>4000 DETECTED";
+    -> END;
+    -> $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT REPEAT_DEMO(3000);$$
++----------------------+
+| REPEAT_DEMO(3000)    |
++----------------------+
+| INCOME>4000 DETECTED |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT REPEAT_DEMO(4000);$$
++----------------------+
+| REPEAT_DEMO(4000)    |
++----------------------+
+| INCOME>4000 DETECTED |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION WHILE_DEMO(VALUE CHAR(1))
+    -> RETURNS CHAR(20)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE STR CHAR(100);
+    -> DECLARE I INT;
+    -> SET STR='';
+    -> SET I=1;
+    -> LABLE:
+    -> WHILE I<=5 DO
+    -> SET STR=CONCAT(STR,VALUE);
+    -> SET I=I+1;
+    -> END WHILE LABLE;
+    -> RETURN STR;
+    -> END;
+    -> $$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT WHILE_DEMO('A');$$
++-----------------+
+| WHILE_DEMO('A') |
++-----------------+
+| AAAAA           |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
