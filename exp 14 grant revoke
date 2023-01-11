@@ -1,0 +1,113 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| empdept       |
+| employee      |
+| faculty       |
+| faculty1      |
+| mark_view     |
+| mentees       |
+| mentees2      |
+| movies        |
+| per           |
+| studdept1     |
+| student       |
++---------------+
+11 rows in set (0.00 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| studid   | int(10)     | YES  |     | NULL    |       |
+| studname | varchar(10) | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
+| studdept | varchar(10) | YES  |     | NULL    |       |
+| city     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> create user nikky;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> grant all on student to nikky;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show grants for nikky;
++--------------------------------------------------------+
+| Grants for nikky@%                                     |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'nikky'@'%'                      |
+| GRANT ALL PRIVILEGES ON `sse`.`student` TO 'nikky'@'%' |
++--------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on student from nikky;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for nikky;
++-----------------------------------+
+| Grants for nikky@%                |
++-----------------------------------+
+| GRANT USAGE ON *.* TO 'nikky'@'%' |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grant select,update on student to nikky;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for nikky;
++--------------------------------------------------------+
+| Grants for nikky@%                                     |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'nikky'@'%'                      |
+| GRANT SELECT, UPDATE ON `sse`.`student` TO 'nikky'@'%' |
++--------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on student from nikky;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for nikky;
++------------------------------------------------+
+| Grants for nikky@%                             |
++------------------------------------------------+
+| GRANT USAGE ON *.* TO 'nikky'@'%'              |
+| GRANT SELECT ON `sse`.`student` TO 'nikky'@'%' |
++------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
