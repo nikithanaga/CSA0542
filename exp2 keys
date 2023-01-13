@@ -15,8 +15,7 @@ mysql> desc student;
 +----------+-------------+------+-----+---------+-------+
 5 rows in set (0.02 sec)
 
-mysql> insert into student values(1,"nikitha","female",,"cse","ongole");
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"cse","ongole")' at line 1
+
 mysql> insert into  student values (1,"nikitha","female","cse","ongole");
 Query OK, 1 row affected (0.00 sec)
 
