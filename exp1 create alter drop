@@ -1,5 +1,4 @@
-mysql> create database sse;
-ERROR 1007 (HY000): Can't create database 'sse'; database exists
+
 mysql> use sse;
 Database changed
 mysql> create table faculty1(facid int(10),facname varchar(10),facdept varchar(10),salary int(10));
